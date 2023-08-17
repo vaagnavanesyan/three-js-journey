@@ -1,6 +1,6 @@
 import {
   AxesHelper,
-  BoxGeometry, Group,
+    BoxGeometry, Clock, Group,
   Mesh,
   MeshBasicMaterial,
   PerspectiveCamera,
@@ -16,13 +16,11 @@ const sizes = {
 const geometry = new BoxGeometry(1, 1, 1);
 const material = new MeshBasicMaterial({ color: 0xff0000 });
 const mesh = new Mesh(geometry, material);
-mesh.position.set(1.7, 1.6, 0.6);
+mesh.position.set(3.7, 1.6, 0.6);
 mesh.scale.set(2, 0.25, 0.5);
 
 const camera = new PerspectiveCamera(100, sizes.width / sizes.height);
 camera.position.set(1, 1, 3);
-// camera.lookAt(mesh.position);
-const axesHelper = new AxesHelper();
 
 const group = new Group();
 const cube1 = new Mesh(
@@ -42,15 +40,23 @@ cube3.position.x = 2;
 group.add(cube1);
 group.add(cube2);
 group.add(cube3)
-group.rotation.x = 1
 
 const scene = new Scene();
 scene.add(mesh);
 scene.add(group);
-scene.add(axesHelper);
 scene.add(camera);
 
 const canvas = document.querySelector("canvas.webgl");
 const renderer = new WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
 renderer.render(scene, camera);
+const clock = new Clock();
+const tick = () => {
+    camera.position.x = Math.sin(clock.getElapsedTime());
+    camera.position.z = Math.cos(clock.getElapsedTime());
+    camera.lookAt(mesh.position)
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick)
+}
+
+tick();
