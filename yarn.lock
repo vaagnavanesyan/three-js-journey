@@ -603,6 +603,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gsap@npm:3.12.2":
+  version: 3.12.2
+  resolution: "gsap@npm:3.12.2"
+  checksum: e3e9709f9ca60cee0ef7fd91f45a232a48b550f95b6df090dfffe2511fccc651408476de575b69c1c2ce80b6089b6ad0d4854beb58ea427f14e51a30b0640a70
+  languageName: node
+  linkType: hard
+
 "has-unicode@npm:^2.0.1":
   version: 2.0.1
   resolution: "has-unicode@npm:2.0.1"
@@ -1194,6 +1201,7 @@ __metadata:
   resolution: "threejs-journey-exercise@workspace:."
   dependencies:
     "@types/three": 0.155.0
+    gsap: 3.12.2
     three: 0.155.0
     vite: 4.4.9
   languageName: unknown
